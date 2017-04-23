@@ -59,6 +59,28 @@ ruby ruby/tcp_single_sender.rb --host=127.0.0.1 --port=3000 --split=8 ruby/data.
 ruby/data.txt: 送信するファイル名
 ```
 
+# TCPで接続を行う（マルチタスク）
+
+1. ruby/tcp_receive_server.rb を起動させます
+
+```bash
+ruby ruby/tcp_receive_server.rb
+
+[option]
+--host: 受信に使用するホスト名またはIPアドレス
+--port: 受信に使用するポート番号
+```
+
+2. クライアント(マルチタスク)を起動します
+
+```bash
+ruby ruby/tcp_multi_sender.rb --host=127.0.0.1 --port=3000 --thread=8 ruby/data.txt
+--host: 送信先ホスト名またはIPアドレス
+--port: 送信先ポート番号
+--thread: スレッド数(分割数)
+ruby/data.txt: 送信するファイル名
+```
+
 # コーディングチェック（おまけ）
 
 下記を実行しエラーが出た内容はある修正を行うようにする。
